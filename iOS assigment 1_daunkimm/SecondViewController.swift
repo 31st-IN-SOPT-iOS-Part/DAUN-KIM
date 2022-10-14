@@ -1,95 +1,124 @@
 //
-//  SecondViewController.swift
-//  iOS assigment 1_daunkimm
+//  S2_SecondView.swift
+//  iOS 31th daunkim
 //
-//  Created by 김다운 on 2022/10/07.
+//  Created by 김다운 on 2022/10/08.
 //
+
+// 1. 첫 번째 큰 네모를 만든다. 2. 두번째로, 큰 네모 하나 만들고 오른쪽 세 개 네모를 만든다. 
+
 
 import UIKit
 
-class SecondViewController: UIViewController {
-    
-    private let startLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x:112, y:120, width:250, height:30))
-        label.text = "카카오톡을 시작합니다"
-        label.font = .boldSystemFont(ofSize: 20)
-        return label
-    }()
-  
-    private let answerTextField: UITextField = {
-        let textField = UITextField(frame:CGRect(x:80, y:280, width:250, height:40))
-        textField.backgroundColor = .white
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
-        textField.placeholder = "이메일 또는 전화번호"
-        return textField
-        
-        
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = UITextField(frame:CGRect(x:80, y:330, width:250, height:40))
-        textField.backgroundColor = .white
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
-        textField.placeholder = "비밀번호"
-        textField.isSecureTextEntry = true
-        return textField
-        
-        
-    }()
+import SnapKit
 
-    private let passwordidTextField: UITextField = {
-        let textField = UITextField(frame:CGRect(x:80, y:380, width:250, height:40))
-        textField.backgroundColor = .white
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
-        textField.placeholder = "비밀번호 확인"
-        textField.isSecureTextEntry = true
-        return textField
+final class SecondViewController: UIViewController {
+    
+    private let S2_SecondView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
         
         
     }()
     
-    private let createButton: UIButton = {
-        let button = UIButton(frame:CGRect(x:20, y:450, width:350, height: 42))
-        button.setTitle("새로운 카카오계정 만들기", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemGray6
-        button.addTarget(SecondViewController.self, action:#selector(presentToThirdVC), for: .touchUpInside)
-        return button
+    private let secondbox1: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
+        
+        
+    }()
+    
+    private let secondbox2: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
+        
+        
+    }()
+    
+    private let secondbox3: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
+        
+        
+    }()
+    
+    private let secondbox4: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
+        
+        
     }()
     
     
     
     
-    var result: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let components: [Any] = [startLabel, answerTextField, passwordTextField, passwordidTextField, createButton ]
-        components.forEach{
-            view.addSubview($0 as! UIView)
-        }
+        layout()
     }
     
-    @objc
-    private func touchupBackButton(){
-        if self.navigationController == nil {
-            self.dismiss(animated: true, completion: nil)
+    private func layout() {
+        
+        [S2_SecondView, secondbox1, secondbox2, secondbox3, secondbox4].forEach {
+            view.addSubview($0)
         }
         
-        else {
-            self.navigationController?.popViewController(animated: true)
+        S2_SecondView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(149)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(70)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-70)
+            make.height.equalTo(153.39)
+            
+            secondbox1.snp.makeConstraints { make in
+                make.top.equalTo(self.S2_SecondView.snp.bottom).offset(23)
+                make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(70)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-190)
+                make.height.equalTo(153.39)
+            }
+            
+            secondbox2.snp.makeConstraints { make in
+                make.top.equalTo(self.S2_SecondView.snp.bottom).offset(23.21)
+                make.leading.equalTo(self.secondbox1.snp.trailing).offset(4.91)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-70)
+                make.height.equalTo(32.29)
+                
+            }
+            
+            secondbox2.snp.makeConstraints { make in
+                make.top.equalTo(self.S2_SecondView.snp.bottom).offset(23.21)
+                make.leading.equalTo(self.secondbox1.snp.trailing).offset(4.91)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-70)
+                make.height.equalTo(34.31)
+                
+            }
+            
+            secondbox3.snp.makeConstraints { make in
+                make.top.equalTo(self.secondbox2.snp.bottom).offset(4.65)
+                make.leading.equalTo(self.secondbox1.snp.trailing).offset(4.91)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-70)
+                make.height.equalTo(34.31)
+                    
+                
+            }
+            
+            secondbox4.snp.makeConstraints { make in
+                make.top.equalTo(self.secondbox3.snp.bottom).offset(5.05)
+                make.leading.equalTo(self.secondbox1.snp.trailing).offset(4.91)
+                make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-70)
+                make.height.equalTo(76.7)
+                    
+                
+            }
+            
+            
         }
     }
-    
-    @objc
-        private func presentToThirdVC() {
-        let thirdVC = ThirdViewController()
-            thirdVC.modalPresentationStyle = .fullScreen
-            self.present(thirdVC, animated: true, completion: nil)
-    }
-    
-
-    
 }
