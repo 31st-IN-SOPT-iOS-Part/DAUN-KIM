@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class firstVC: UIViewController {
     
@@ -22,14 +23,14 @@ final class firstVC: UIViewController {
         return view
     }()
     
-    private let friendLabel = UILabel(){
+    private let friendLabel = UILabel().then {
         $0.text = "친구"
-        $0.textColor =.black
+        $0.textColor = .black
         $0.font = .boldSystemFont(ofSize: 21)
     }
     
     private lazy var settingButton = UIButton().then {
-        $0.image = UIImage(named: "settings 1")
+        $0.setBackgroundImage(UIImage(named: "settings 1"), for: .normal)
     }
     
     

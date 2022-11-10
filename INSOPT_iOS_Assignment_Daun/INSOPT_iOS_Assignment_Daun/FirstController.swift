@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FirstViewController: UIViewController {
     
@@ -88,14 +89,8 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        let components: [Any] = [MainLabel, SubLabel, answerTextField, answer2TextField, loginButton, createButton, findLabel]
-        components.forEach {
-            view.addSubview($0 as! UIView)
-        }
-
-        
+     
+        layout()
     }
     
     
@@ -117,13 +112,86 @@ class FirstViewController: UIViewController {
             thirdVC.modalPresentationStyle = .fullScreen
             self.present(thirdVC, animated: true, completion: nil)
     }
+    
+    private func layout() {
+        view.backgroundColor = .white
+        
+        let components: [Any] = [MainLabel, SubLabel, answerTextField, answer2TextField, loginButton, createButton, findLabel]
+        components.forEach {
+        view.addSubview($0 as! UIView)
+        
+            
+        }
+        
+        MainLabel.snp.makeConstraints {make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(40)
+            make.centerX.equalToSuperview()
+            
+        }
+        
+        SubLabel.snp.makeConstraints {make in
+            make.top.equalTo(MainLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        answerTextField.snp.makeConstraints {make in
+            make.top.equalTo(SubLabel.snp.bottom).offset(60)
+            make.leading.equalToSuperview().offset(21)
+            make.trailing.equalToSuperview().offset(-21)
+            make.height.equalTo(49)
+            
+        }
+        
+        answer2TextField.snp.makeConstraints {make in
+            make.top.equalTo(answerTextField.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(21)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(49)
+            
+        }
+                
+        loginButton.snp.makeConstraints {make in
+            make.top.equalTo(answer2TextField.snp.bottom).offset(35)
+            make.leading.equalToSuperview().offset(21)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(44)
+            
+        }
+        
+        createButton.snp.makeConstraints {make in
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(21)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(44)
+                
+        }
+        
+        findLabel.snp.makeConstraints {make in
+            make.top.equalTo(createButton.snp.bottom).offset(19)
+            make.leading.equalToSuperview().offset(112)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(20)
+            
+
+            
+        }
+            
+            
+            
+            
+            
+            
+        }
+        
+
+    }
         
        
 //        presentToSecondVC()
         
    
     
-    }
+
 
 
 
